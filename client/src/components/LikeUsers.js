@@ -7,8 +7,7 @@ import {
   Image,
 } from 'semantic-ui-react'
 import { getLikeUsers } from '../reducers/likeUsers'
-
-const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png'
+ 
 
 class LikeUsers extends React.Component {
   componentDidMount() {
@@ -16,9 +15,14 @@ class LikeUsers extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.likeUsers !== this.props.likeUsers)
-      this.reload()
+    if (prevProps.likeUsers !== this.props.likeUsers) {
+  const prevIds = prevProps.map( p => p.id )
+  const currentIds = this.props.likeUsers
+  const set = [...new Set([...prevIds, currentIds])]
+  if (set.length !== prevIds.length)
+  this.reload()
   }
+}
 
   reload = () => {
     this.props.dispatch(getLikeUsers())
