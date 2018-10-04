@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import TagForm from './TagForm'
 import { getTags, deleteTag } from '../reducers/tags'
 import LikeUsers from './LikeUsers'
+import TagList from './TagList'
 
 class Tags extends React.Component {
   componentDidMount() {
